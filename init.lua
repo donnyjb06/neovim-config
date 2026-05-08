@@ -30,4 +30,5 @@ require("lazy").setup({
   { import = "plugins.bufferline" },
   { import = "plugins.noice" },
   { import = "plugins.surround" },
+  { import = "plugins.comment" },
 })
