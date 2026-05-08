@@ -16,16 +16,20 @@ return {
       local luasnip = require("luasnip")
 
       require("luasnip.loaders.from_vscode").lazy_load()
+
       require("luasnip.loaders.from_lua").load({
         paths = "~/.config/nvim/lua/snippets",
       })
 
-      -- Reuse javascript.lua snippets in JS/TS/React filetypes
       luasnip.filetype_extend("typescript", { "javascript" })
       luasnip.filetype_extend("javascriptreact", { "javascript" })
       luasnip.filetype_extend("typescriptreact", { "javascript" })
 
       cmp.setup({
+        completion = {
+          completeopt = "menu,menuone,noinsert",
+        },
+
         snippet = {
           expand = function(args)
             luasnip.lsp_expand(args.body)
@@ -35,11 +39,16 @@ return {
         window = {
           completion = {
             border = "rounded",
-            winhighlight = "Normal:Pmenu,FloatBorder:FloatBorder,CursorLine:PmenuSel,Search:None",
+
+            winhighlight =
+            "Normal:Pmenu,FloatBorder:FloatBorder,CursorLine:PmenuSel,Search:None",
+
             col_offset = -3,
             side_padding = 1,
+
             max_width = 50,
             max_height = 8,
+
             scrollbar = false,
           },
 
@@ -50,12 +59,46 @@ return {
           },
         },
 
+        formatting = {
+          fields = {
+            "abbr",
+            "menu",
+          },
+
+          format = function(entry, item)
+            local source_names = {
+              nvim_lsp = "[LSP]",
+              luasnip = "[Snippet]",
+              buffer = "[Buffer]",
+              path = "[Path]",
+            }
+
+            local detail =
+                entry.completion_item.detail
+                or (
+                  entry.completion_item.labelDetails
+                  and entry.completion_item.labelDetails.description
+                )
+                or ""
+
+            if detail ~= "" then
+              item.menu = detail
+            else
+              item.menu = source_names[entry.source.name]
+            end
+
+            return item
+          end,
+        },
+
         mapping = cmp.mapping.preset.insert({
           ["<C-Space>"] = cmp.mapping.complete(),
 
           ["<Tab>"] = cmp.mapping(function(fallback)
             if cmp.visible() then
-              cmp.confirm({ select = true })
+              cmp.confirm({
+                select = true,
+              })
             elseif luasnip.expand_or_jumpable() then
               luasnip.expand_or_jump()
             else
@@ -78,19 +121,35 @@ return {
         }),
 
         sources = cmp.config.sources({
-          { name = "luasnip", group_index = 1, priority = 1000 },
-        }, {
-          { name = "nvim_lsp", group_index = 2, priority = 900 },
-          { name = "path",     group_index = 2, priority = 700 },
-          { name = "buffer",   group_index = 2, priority = 500 },
+          {
+            name = "nvim_lsp",
+            priority = 1000,
+          },
+
+          {
+            name = "path",
+            priority = 750,
+          },
+
+          {
+            name = "buffer",
+            priority = 500,
+          },
+
+          {
+            name = "luasnip",
+            priority = 250,
+          },
         }),
 
         sorting = {
           priority_weight = 2,
+
           comparators = {
             cmp.config.compare.exact,
-            cmp.config.compare.offset,
             cmp.config.compare.score,
+            cmp.config.compare.recently_used,
+            cmp.config.compare.locality,
             cmp.config.compare.kind,
             cmp.config.compare.sort_text,
             cmp.config.compare.length,
