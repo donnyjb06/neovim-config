@@ -53,6 +53,13 @@ return {
             },
 
             {
+              icon = "󰉋 ",
+              key = "p",
+              desc = "Open Projects",
+              action = ":cd ~/projects",
+            },
+
+            {
               icon = " ",
               key = "c",
               desc = "Open Config",
