@@ -18,6 +18,22 @@ return {
           type = "main",
           scratch = false,
         },
+
+        modes = {
+          diagnostics = {
+            win = {
+              position = "bottom",
+              size = 12,
+            },
+          },
+
+          qflist = {
+            win = {
+              position = "bottom",
+              size = 12,
+            },
+          },
+        },
       })
 
       vim.keymap.set("n", "<leader>dd", function()
@@ -45,6 +61,18 @@ return {
         })
       end, {
         desc = "[D]iagnostics Quickfix",
+      })
+
+      vim.api.nvim_set_hl(0, "TroubleNormal", {
+        bg = "#181616",
+      })
+
+      vim.api.nvim_set_hl(0, "TroubleNormalNC", {
+        bg = "#181616",
+      })
+
+      vim.api.nvim_set_hl(0, "TroubleText", {
+        fg = "#dcd7ba",
       })
     end,
   },

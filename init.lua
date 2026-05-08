@@ -31,4 +31,5 @@ require("lazy").setup({
   { import = "plugins.noice" },
   { import = "plugins.surround" },
   { import = "plugins.comment" },
+  { import = "plugins.smooth-scroll" },
 })
