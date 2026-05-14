@@ -1,6 +1,7 @@
 return {
   {
     "williamboman/mason.nvim",
+
     config = function()
       require("mason").setup()
     end,
@@ -8,6 +9,7 @@ return {
 
   {
     "neovim/nvim-lspconfig",
+
     dependencies = {
       "hrsh7th/cmp-nvim-lsp",
     },
@@ -29,32 +31,87 @@ return {
         },
       })
 
-      vim.keymap.set("n", "<leader>gd", vim.lsp.buf.definition, { desc = "[G]oto [D]efinition" })
-      vim.keymap.set("n", "<leader>gr", vim.lsp.buf.references, { desc = "[G]oto [R]eferences" })
-      vim.keymap.set("n", "<leader>gI", vim.lsp.buf.implementation, { desc = "[G]oto [I]mplementation" })
-      vim.keymap.set("n", "<leader>gD", vim.lsp.buf.declaration, { desc = "[G]oto [D]eclaration" })
-      vim.keymap.set("n", "<leader>D", vim.lsp.buf.type_definition, { desc = "Jump to Type [D]efinition" })
+      vim.lsp.config("emmet_language_server", {
+        filetypes = {
+          "html",
+          "css",
+          "javascript",
+          "javascriptreact",
+          "typescript",
+          "typescriptreact",
+        },
 
-      vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, { desc = "[C]ode [A]ctions" })
-      vim.keymap.set("n", "<leader>ch", vim.lsp.buf.hover, { desc = "[C]ode [H]over" })
-      vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, { desc = "[R]e[N]ame Symbol" })
+        init_options = {
+          html = {
+            options = {
+              ["bem.enabled"] = true,
+            },
+          },
+        },
+      })
+
+
+      vim.keymap.set("n", "<leader>gd", vim.lsp.buf.definition, {
+        desc = "[G]oto [D]efinition",
+      })
+
+      vim.keymap.set("n", "<leader>gr", vim.lsp.buf.references, {
+        desc = "[G]oto [R]eferences",
+      })
+
+      vim.keymap.set("n", "<leader>gI", vim.lsp.buf.implementation, {
+        desc = "[G]oto [I]mplementation",
+      })
+
+      vim.keymap.set("n", "<leader>gD", vim.lsp.buf.declaration, {
+        desc = "[G]oto [D]eclaration",
+      })
+
+      vim.keymap.set("n", "<leader>D", vim.lsp.buf.type_definition, {
+        desc = "Jump to Type [D]efinition",
+      })
+
+      vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, {
+        desc = "[C]ode [A]ctions",
+      })
+
+      vim.keymap.set("n", "<leader>ch", vim.lsp.buf.hover, {
+        desc = "[C]ode [H]over",
+      })
+
+      vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, {
+        desc = "[R]e[N]ame Symbol",
+      })
 
       vim.keymap.set("n", "<leader>dn", function()
-        vim.diagnostic.jump({ count = 1, float = true })
-      end, { desc = "[D]iagnostic [N]ext Problem" })
+        vim.diagnostic.jump({
+          count = 1,
+          float = true,
+        })
+      end, {
+        desc = "[D]iagnostic [N]ext Problem",
+      })
 
       vim.keymap.set("n", "<leader>dp", function()
-        vim.diagnostic.jump({ count = -1, float = true })
-      end, { desc = "[D]iagnostic [P]revious Problem" })
+        vim.diagnostic.jump({
+          count = -1,
+          float = true,
+        })
+      end, {
+        desc = "[D]iagnostic [P]revious Problem",
+      })
 
       vim.keymap.set("n", "<leader>ds", function()
         require("telescope.builtin").lsp_document_symbols()
-      end, { desc = "[D]ocument [S]ymbols" })
+      end, {
+        desc = "[D]ocument [S]ymbols",
+      })
     end,
   },
 
   {
     "williamboman/mason-lspconfig.nvim",
+
     dependencies = {
       "williamboman/mason.nvim",
       "neovim/nvim-lspconfig",
@@ -80,6 +137,7 @@ return {
         "prismals",
         "graphql",
         "marksman",
+        "emmet_language_server",
       },
     },
   },

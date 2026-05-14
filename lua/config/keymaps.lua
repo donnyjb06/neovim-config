@@ -1,6 +1,8 @@
 vim.keymap.set("n", "<leader>f", "<cmd>write<CR>", { desc = "[F]save File" })
 
-vim.keymap.set("t", "<Esc>", [[<C-\><C-n>]], { desc = "Exit terminal mode" })
+vim.keymap.set("t", "<Esc><Esc>", [[<C-\><C-n>]], {
+  desc = "Exit terminal mode",
+})
 
 if vim.g.neovide then
   vim.keymap.set({ "n", "v" }, "<C-v>", '"+p', { desc = "Paste from system clipboard" })

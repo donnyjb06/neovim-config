@@ -1,152 +1,123 @@
 return {
   {
-    "akinsho/bufferline.nvim",
-
-    version = "*",
+    "romgrk/barbar.nvim",
 
     dependencies = {
       "nvim-tree/nvim-web-devicons",
     },
 
+    init = function()
+      vim.g.barbar_auto_setup = false
+      vim.o.showtabline = 2
+    end,
+
     config = function()
-      require("bufferline").setup({
-        options = {
-          mode = "buffers",
+      require("barbar").setup({
+        animation = true,
+        auto_hide = 1,
+        tabpages = false,
+        clickable = true,
 
-          numbers = "none",
+        maximum_padding = 1,
+        minimum_padding = 1,
+        maximum_length = 22,
 
-          close_command = "bdelete! %d",
-          right_mouse_command = "bdelete! %d",
-
-          diagnostics = "nvim_lsp",
-
-          show_buffer_close_icons = false,
-          show_close_icon = false,
-
-          show_duplicate_prefix = false,
-
-          separator_style = "thin",
-
-          always_show_bufferline = true,
-
-          offsets = {
-            {
-              filetype = "neo-tree",
-              text = "Files",
-              text_align = "center",
-              separator = true,
-            },
-            {
-              filetype = "aerial",
-              text = "Outline",
-              text_align = "center",
-              separator = true,
-            },
-          },
-        },
-
-        highlights = {
-          fill = {
-            bg = "#181616",
-          },
-
-          background = {
-            fg = "#727169",
-            bg = "#181616",
-          },
-
-          buffer_visible = {
-            fg = "#c8c093",
-            bg = "#181616",
-          },
-
-          buffer_selected = {
-            fg = "#dcd7ba",
-            bg = "#181616",
-            bold = true,
-            italic = false,
-          },
+        icons = {
+          buffer_index = false,
+          buffer_number = false,
+          button = false,
 
           modified = {
-            fg = "#98bb6c",
-            bg = "#181616",
-          },
-
-          modified_visible = {
-            fg = "#98bb6c",
-            bg = "#181616",
-          },
-
-          modified_selected = {
-            fg = "#98bb6c",
-            bg = "#181616",
+            button = "●",
           },
 
           separator = {
-            fg = "#181616",
-            bg = "#181616",
+            left = "",
+            right = "",
           },
 
-          separator_visible = {
-            fg = "#181616",
-            bg = "#181616",
+          inactive = {
+            separator = {
+              left = "",
+              right = "",
+            },
+          },
+        },
+
+        exclude_ft = {
+          "alpha",
+          "dashboard",
+          "snacks_dashboard",
+          "neo-tree",
+          "aerial",
+          "Trouble",
+          "qf",
+          "toggleterm",
+        },
+
+        exclude_name = {
+          "Lazy",
+        },
+
+        sidebar_filetypes = {
+          ["neo-tree"] = {
+            event = "BufWipeout",
+            text = "Files",
+            align = "center",
           },
 
-          separator_selected = {
-            fg = "#181616",
-            bg = "#181616",
-          },
-
-          indicator_selected = {
-            fg = "#7e9cd8",
-            bg = "#181616",
-          },
-
-          diagnostic = {
-            fg = "#727169",
-            bg = "#181616",
-          },
-
-          diagnostic_selected = {
-            fg = "#dcd7ba",
-            bg = "#181616",
-            bold = true,
-          },
-
-          error = {
-            fg = "#e82424",
-            bg = "#181616",
-          },
-
-          error_selected = {
-            fg = "#e82424",
-            bg = "#181616",
-            bold = true,
-          },
-
-          warning = {
-            fg = "#ff9e3b",
-            bg = "#181616",
-          },
-
-          warning_selected = {
-            fg = "#ff9e3b",
-            bg = "#181616",
-            bold = true,
+          aerial = {
+            event = "BufWipeout",
+            text = "Outline",
+            align = "center",
           },
         },
       })
 
-      vim.keymap.set("n", "<leader>bn", "<cmd>BufferLineCycleNext<CR>", {
+      vim.keymap.set("n", "<leader>bn", "<cmd>BufferNext<CR>", {
         desc = "[B]uffer [N]ext",
       })
 
-      vim.keymap.set("n", "<leader>bp", "<cmd>BufferLineCyclePrev<CR>", {
+      vim.keymap.set("n", "<leader>bp", "<cmd>BufferPrevious<CR>", {
         desc = "[B]uffer [P]revious",
       })
 
-      vim.keymap.set("n", "<leader>bd", "<cmd>bdelete<CR>", {
+      vim.keymap.set("n", "<leader>bd", "<cmd>BufferClose<CR>", {
         desc = "[B]uffer [D]elete",
+      })
+
+      vim.keymap.set("n", "<leader>bo", "<cmd>BufferCloseAllButCurrent<CR>", {
+        desc = "[B]uffer Close [O]thers",
+      })
+
+      vim.api.nvim_set_hl(0, "BufferCurrent", {
+        fg = "#dcd7ba",
+        bg = "#181616",
+        bold = true,
+      })
+
+      vim.api.nvim_set_hl(0, "BufferVisible", {
+        fg = "#c8c093",
+        bg = "#181616",
+      })
+
+      vim.api.nvim_set_hl(0, "BufferInactive", {
+        fg = "#727169",
+        bg = "#181616",
+      })
+
+      vim.api.nvim_set_hl(0, "BufferTabpageFill", {
+        bg = "#181616",
+      })
+
+      vim.api.nvim_set_hl(0, "BufferCurrentMod", {
+        fg = "#98bb6c",
+        bg = "#181616",
+      })
+
+      vim.api.nvim_set_hl(0, "BufferInactiveMod", {
+        fg = "#98bb6c",
+        bg = "#181616",
       })
     end,
   },

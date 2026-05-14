@@ -30,36 +30,49 @@ return {
           whitespace = "  ",
         },
 
-        icons = {
-          Array = "󰅪 ",
-          Boolean = " ",
-          Class = " ",
-          Constant = " ",
-          Constructor = " ",
-          Enum = " ",
-          EnumMember = " ",
-          Event = " ",
-          Field = " ",
-          File = " ",
-          Function = "󰊕 ",
-          Interface = " ",
-          Key = " ",
-          Method = "󰊕 ",
-          Module = " ",
-          Namespace = "󰦮 ",
-          Null = " ",
-          Number = "󰎠 ",
-          Object = " ",
-          Operator = " ",
-          Package = " ",
-          Property = " ",
-          String = " ",
-          Struct = "󰆼 ",
-          TypeParameter = " ",
-          Variable = "󰀫 ",
+        filter_kind = {
+          "Class",
+          "Constructor",
+          "Enum",
+          "Function",
+          "Interface",
+          "Method",
+          "Module",
+          "Struct",
+          "Type",
         },
 
-        filter_kind = false,
+        keymaps = {
+          ["?"] = "actions.show_help",
+          ["q"] = "actions.close",
+
+          ["<CR>"] = "actions.jump",
+          ["<Tab>"] = "actions.jump",
+
+          ["o"] = "actions.tree_toggle",
+          ["O"] = "actions.tree_toggle_recursive",
+
+          ["J"] = "actions.down_and_scroll",
+          ["K"] = "actions.up_and_scroll",
+
+          ["}"] = "actions.next",
+          ["{"] = "actions.prev",
+
+          ["]]"] = "actions.next_up",
+          ["[["] = "actions.prev_up",
+        },
+
+        icons = {
+          Class = " ",
+          Constructor = " ",
+          Enum = " ",
+          Function = "󰊕 ",
+          Interface = " ",
+          Method = "󰊕 ",
+          Module = " ",
+          Struct = "󰆼 ",
+          Type = " ",
+        },
       })
 
       vim.keymap.set("n", "<leader>o", function()

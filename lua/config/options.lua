@@ -10,6 +10,21 @@ vim.opt.clipboard = "unnamedplus"
 vim.opt.autoindent = true
 vim.opt.smartindent = true
 vim.opt.cindent = false
+vim.opt.scrolloff = 10
+vim.opt.sidescrolloff = 10
+vim.opt.wrap = false
+vim.opt.softtabstop = 2
+vim.opt.ignorecase = true
+vim.opt.smartcase = true
+vim.opt.splitright = true
+vim.opt.splitbelow = true
+vim.opt.signcolumn = "yes"
+vim.opt.cursorline = true
+vim.opt.termguicolors = true
+vim.opt.updatetime = 250
+vim.opt.timeoutlen = 300
+vim.opt.mouse = "a"
+vim.opt.undofile = true
 
 vim.o.guifont = "JetBrainsMono Nerd Font:h14"
 
@@ -44,10 +59,10 @@ vim.g.neovide_floating_blur_amount_x = 1.0
 vim.g.neovide_floating_blur_amount_y = 1.0
 
 -- Padding
-vim.g.neovide_padding_top = 4
-vim.g.neovide_padding_bottom = 4
-vim.g.neovide_padding_left = 4
-vim.g.neovide_padding_right = 4
+vim.g.neovide_padding_top = 0
+vim.g.neovide_padding_bottom = 0
+vim.g.neovide_padding_left = 0
+vim.g.neovide_padding_right = 0
 
 -- Hide mouse while typing
 vim.g.neovide_hide_mouse_when_typing = true

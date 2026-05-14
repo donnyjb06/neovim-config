@@ -32,4 +32,8 @@ require("lazy").setup({
   { import = "plugins.surround" },
   { import = "plugins.comment" },
   { import = "plugins.smooth-scroll" },
+  { import = "plugins.window-management" },
+  { import = "plugins.copilot" },
+  { import = "plugins.copilot-chat" },
+  { import = "plugins.todo-comments" },
 })
