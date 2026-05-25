@@ -9,7 +9,7 @@ return {
 
     opts = {
       enabled = true,
-      restriction_mode = "hint",
+      restriction_mode = "block",
 
       disabled_filetypes = {
         "qf",
