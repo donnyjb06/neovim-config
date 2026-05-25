@@ -103,7 +103,19 @@ return {
 
       local runners = {
         python = function(file)
-          return "python3 " .. shellescape(file)
+          local cwd = vim.fn.getcwd()
+          local venv_python = cwd .. "/.venv/bin/python"
+
+          local python = vim.fn.filereadable(venv_python) == 1
+              and shellescape(venv_python)
+              or "python3"
+
+          return "cd "
+              .. shellescape(cwd)
+              .. " && PYTHONPATH=app "
+              .. python
+              .. " "
+              .. shellescape(file)
         end,
 
         c = function(file)

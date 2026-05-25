@@ -22,6 +22,30 @@ return {
         at_edge = "stop",
       })
 
+      vim.keymap.set("n", "<leader>nv", "<C-w>v", {
+        desc = "New vertical split",
+      })
+
+      vim.keymap.set("n", "<leader>nh", "<C-w>s", {
+        desc = "New horizontal split",
+      })
+
+      vim.keymap.set("n", "<leader>ne", "<C-w>=", {
+        desc = "Equalize splits",
+      })
+
+      vim.keymap.set("n", "<leader>nm", "<C-w>|<C-w>_", {
+        desc = "Maximize split",
+      })
+
+      vim.keymap.set("n", "<leader>nc", "<C-w>q", {
+        desc = "Close split",
+      })
+
+      vim.keymap.set("n", "<leader>no", "<C-w>o", {
+        desc = "Only current split",
+      })
+
       vim.keymap.set("n", "<A-h>", smart_splits.move_cursor_left, {
         desc = "Move to window left",
       })

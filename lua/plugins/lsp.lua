@@ -50,6 +50,27 @@ return {
         },
       })
 
+      vim.lsp.enable({
+        "lua_ls",
+        "ts_ls",
+        "html",
+        "cssls",
+        "tailwindcss",
+        "eslint",
+        "jsonls",
+        "pyright",
+        "jdtls",
+        "rust_analyzer",
+        "bashls",
+        "yamlls",
+        "dockerls",
+        "docker_compose_language_service",
+        "sqlls",
+        "prismals",
+        "graphql",
+        "marksman",
+        "emmet_language_server",
+      })
 
       vim.keymap.set("n", "<leader>gd", vim.lsp.buf.definition, {
         desc = "[G]oto [D]efinition",
