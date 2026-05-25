@@ -26,7 +26,7 @@ vim.opt.timeoutlen = 300
 vim.opt.mouse = "a"
 vim.opt.undofile = true
 
-vim.o.guifont = "JetBrainsMono Nerd Font:h14"
+vim.o.guifont = "JetBrainsMono Nerd Font:h12.5"
 
 -- Transparency
 vim.g.neovide_opacity = 0.92
