@@ -163,6 +163,28 @@ return {
               skip = true,
             },
           },
+
+          {
+            filter = {
+              event = "notify",
+              level = vim.log.levels.ERROR,
+            },
+
+            opts = {
+              timeout = false,
+            },
+          },
+
+          {
+            filter = {
+              event = "notify",
+              level = vim.log.levels.WARN,
+            },
+
+            opts = {
+              timeout = 8000,
+            },
+          },
         },
       })
 
@@ -170,6 +192,18 @@ return {
 
       vim.api.nvim_set_hl(0, "NotifyBackground", {
         bg = "#181616",
+      })
+
+      vim.keymap.set("n", "<leader>un", "<cmd>Noice history<CR>", {
+        desc = "[U]I [N]otification History",
+      })
+
+      vim.keymap.set("n", "<leader>uN", "<cmd>Noice last<CR>", {
+        desc = "[U]I Last [N]otification",
+      })
+
+      vim.keymap.set("n", "<leader>ud", "<cmd>Noice dismiss<CR>", {
+        desc = "[U]I [D]ismiss Notifications",
       })
     end,
   },

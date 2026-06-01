@@ -23,8 +23,7 @@ return {
         "toggleterm",
       },
     },
-
-    keys = {
+keys = {
       {
         "<leader>uh",
         "<cmd>Hardtime toggle<CR>",

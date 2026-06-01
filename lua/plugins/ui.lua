@@ -90,8 +90,8 @@ return {
 
   {
     "nvim-treesitter/nvim-treesitter",
-    branch = "master",
     build = ":TSUpdate",
+
     config = function()
       require("nvim-treesitter.configs").setup({
         ensure_installed = {
@@ -114,8 +114,17 @@ return {
           "graphql",
         },
 
+        sync_install = false,
+        auto_install = true,
+
         highlight = {
           enable = true,
+
+          disable = {
+            "python",
+          },
+
+          additional_vim_regex_highlighting = false,
         },
 
         indent = {

@@ -7,7 +7,9 @@ return {
       "nvim-lua/plenary.nvim",
       "antoinemadec/FixCursorHold.nvim",
       "nvim-treesitter/nvim-treesitter",
+
       "marilari88/neotest-vitest",
+      "nvim-neotest/neotest-python",
     },
 
     config = function()
@@ -16,7 +18,13 @@ return {
       neotest.setup({
         adapters = {
           require("neotest-vitest"),
+
+          require("neotest-python")({
+            runner = "pytest",
+            python = ".venv/bin/python",
+          }),
         },
+
         output_panel = {
           enabled = true,
           open = "botright split | resize 15",

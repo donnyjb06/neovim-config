@@ -1,5 +1,5 @@
 vim.g.mapleader = " "
-
+vim.opt.switchbuf = "usetab,useopen"
 vim.opt.number = true
 vim.opt.relativenumber = true
 vim.opt.tabstop = 2
